@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VARFiT</title>
+        {% load static %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static '/css/styles10.css' %}">
+    </head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-light">
+        <a class="navbar-brand" href="/">
+         <img src="{% static '/css/images/varfit.png' %}" style="width:50px" id="logo">
+        </a>
+        <a href="Goals">About Me</a> <a href="blog">Blog</a>  <a href="projects">Projects</a> <a href="/">Home</a>
+    </nav>
+    <div id="back_pic">
+        <img src="{% static '/css/images/blue.jpg' %}"> 
+    </div>
+    
+    <div class="container">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Register</h2>
+                <div class="row col-sm-12">
+                    <form action="/register" method="POST">
+                        {% csrf_token %}
+                        <div class="row form-group">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "reg_first_name" %}
+                            <p class="col-sm-12 text-danger">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <label class="col-sm-6" for="first_name">First Name:</label>
+                            <input class="col-sm-6 form-control" type="text" name="first_name">
+                        </div>
+                        
+                        <div class="row form-group">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "reg_last_name" %}
+                            <p class="col-sm-12 text-danger">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <label class="col-sm-6" for="last_name">Last Name:</label>
+                            <input class="col-sm-6 form-control" type="text" name="last_name">
+                        </div>
+
+                        <div class="row form-group">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "reg_email" %}
+                            <p class="col-sm-12 text-danger">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <label class="col-sm-6" for="email">Email:</label>
+                            <input class="col-sm-6 form-control" type="text" name="email">
+                        </div>
+
+                        <div class="row form-group">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "reg_pass" %}
+                            <p class="col-sm-12 text-danger">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <label class="col-sm-6" for="password">Password:</label>
+                            <input class="col-sm-6 form-control" type="password" name="password">
+                        </div>
+
+                        <div class="row form-group">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "reg_pass" %}
+                            <p class="col-sm-12 text-danger">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <label class="col-sm-6" for="password_confirm">Confirm:</label>
+                            <input class="col-sm-6 form-control" type="password" name="password_confirm">
+                        </div>
+
+                        <div class="row form-group">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "reg_pass" %}
+                            <p class="col-sm-12 text-danger">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <input class="col-sm-6" type="submit" value="Register">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <h2>Login</h2>
+                <div class="row col-sm-12">
+                    <form action="/login" method="POST">
+                        {% csrf_token %}
+                        <div class="row form-group">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "log" %}
+                            <p class="col-sm-12 text-danger">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <label class="col-sm-6" for="email">Email:</label>
+                            <input class="col-sm-6 form-control" type="text" name="email">
+                        </div>
+
+                        <div class="row form-group">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "reg_pass" %}
+                            <p class="col-sm-12 text-danger">{{message}}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <label class="col-sm-6" for="password">Password:</label>
+                            <input class="col-sm-6 form-control" type="password" name="password">
+                        </div>
+                        <div class="row form-group">
+                            <input class="col-sm-6" type="submit" value="Login">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-light">
+        <a href="https://www.linkedin.com/in/vick-shindano-845143142/"> <img src="{% static '/css/images/linkedin.png' %}" id="linkedin"></a>
+        <a href="https://github.com/vick119">  <img src="{% static '/css/images/github.png' %}" id="git"> </a>  
+    </nav>
+</body>
+</html>

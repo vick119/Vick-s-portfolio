@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VARFiT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 h1">Welcome, {{logged_user.first_name}}!</div>
+            <div class="col-sm-4">
+                <a href="/logout">Log Out</a>
+                <a href="/success">Workouts</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                {% if one_workout.posted_by == logged_user %}
+                <form action="/success/{{one_workout.id}}/edit" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.extra_tags == "title" %}
+                        <span class="col-sm-12 text-danger">{{message}}</span>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <input type="text" name="title" value="{{one_workout.title}}" class="col-sm-12 form-control">
+                    </div>
+                    <div class="row">
+                        <p>Added by: {{logged_user.first_name}} {{logged_user.last_name}}</p>
+                        <p>Added on: {{one_workout.created_at}}</p>
+                        <p>Last updated on: {{one_workout.updated_at}}</p>
+                    </div>
+                    <div class="row">
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.extra_tags == "description" %}
+                        <span class="col-sm-12 text-danger">{{message}}</span>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <label for="description" class="col-sm-4">Description:</label>
+                        <textarea name="description" class="col-sm-8 form-control"
+                            rows="3">{{one_workout.description}}</textarea>
+                    </div>
+                    <div class="row">
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.extra_tags == "instruction" %}
+                        <span class="col-sm-12 text-danger">{{message}}</span>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <label for="instruction" class="col-sm-4">Instruction:</label>
+                        <textarea name="instruction" class="col-sm-8 form-control"
+                            rows="3">{{one_workout.instruction}}</textarea>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Update" class="btn btn-primary col-sm-4">
+                    </div>
+                </form>
+                <a href="/success/{{one_workout.id}}/delete"><button class="btn btn-secondary ">Delete</button></a>
+                {% else %}
+                <div class="row">
+                    <h2>{{one_workout.title}}</h2>
+                </div>
+                <p>Added by: {{one_work.posted_by.first_name}} {{one_workout.posted_by.last_name}}</p>
+                <p>Added on: {{one_workout.created_at}}</p>
+                <p>Last updated on: {{one_workout.upated_at}}</p>
+                <p>Description: {{one_workout.description}}</p>
+                <p>Instruction: {{one_workout.instruction}}</p>
+                {% endif %}
+            </div>
+            <div class="col-sm-6" id="likes">
+                <div class="row"> 
+                    <h3>Users Who Like This Workout</h3>
+                </div>
+                <ul>
+                    {% for user in one_workout.liked_by.all %}
+                    <li>{{user.first_name}} {{user.last_name}} {% if user == logged_user %}<a href="/succes/{{one_workout.id}}/unfavorite">Un-Favorite</a>{% endif %}</li>
+                    {% endfor %}
+                </ul>
+                {% if logged_user not in one_workout.liked_by.all %}
+                <div class="row">
+                    <a href="/success/{{one_workout.id}}/favorite">Add to Favorites</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

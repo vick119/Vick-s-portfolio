@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+      {% load static %}
+    <link rel="stylesheet" href="{% static '/css/styles10.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 h1">Welcome, {{user.first_name}}!</div>
+            <div class="col-sm-4">
+                <a href="/logout">Log Out</a>
+                <a href="/">Home</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <h2>Add a Workout :</h2>
+                <!-- <form method="POST" enctype="multipart/form-data"> 
+                    {% csrf_token %} 
+                    {{ form.as_p }} 
+                    <input type="submit" value="Submit"> 
+                </form> -->
+                <form action="/success/create" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.extra_tags == "title" %}
+                        <span class="col-sm-12 text-danger">{{message}}</span>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <label for="title" class="col-sm-4">Title:</label>
+                        <input type="text" name="title" class="col-sm-8 form-control">
+                    </div>
+                    <div class="row">
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.extra_tags == "description" %}
+                        <span class="col-sm-12 text-danger">{{message}}</span>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <label for="description" class="col-sm-4">Description: </label>
+                        <textarea name="description" class="col-sm-8" rows="2"></textarea>
+                    </div>
+                
+                    <div class="row">
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.extra_tags == "instruction" %}
+                        <span class="col-sm-12 text-danger">{{message}}</span>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <label for="instruction" class="col-sm-4">Instructions: </label>
+                        <textarea name="instruction" class="col-sm-8" rows="2"></textarea>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Add" class="btn btn-primary col-sm-4">
+                    </div>
+                </form>
+                <!-- <div>
+                    <a href="/my_favorites" ><input type="submit" value="My Favorites" class="btn btn-primary col-sm-4"> </a>
+                </div> -->
+            </div>
+            <div class="col-sm-7">
+                <h2>Workouts :</h2>
+                {% for workout in all_workouts %}
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-primary"> 
+                        <p>
+                            <a href="/success/{{workout.id}}">
+                                {{workout.title}}
+                            </a>
+                        </p>
+                    </li>
+                    <li class="list-group-item"><p><h5>Workout By:</h5>{{workout.posted_by.first_name}} {{workout.posted_by.last_name}}</p></li>
+                    <li class="list-group-item"><p><h5>Description:</h5><br>{{workout.description}}</p></li>
+                    <li class="list-group-item"><p> <h5>Instructions:</h5><br>{{workout.instruction}}</p></li>
+                    {% if logged_user not in workout.liked_by.all %}
+                    <li class="list-group-item list-group-item-danger"><a href="/success/{{workout.id}}/favorite">Add to Favorites</a></li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+</body>

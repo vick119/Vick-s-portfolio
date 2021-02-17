@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>blog</title>
+        {% load static %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static '/css/styles10.css' %}">
+    </head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="/">
+            <img src="{% static '/css/images/varfit.png' %}" style="width:50px">
+            </a>
+            <a href="Goals">About Me</a> <a href="blog">Blog</a>  <a href="projects">Projects</a><a href="/">Home</a>
+        </nav>
+        <div id="blog_pic">
+            <!-- <p>Habits for productivity</p> -->
+            <a href="https://v-shindano.medium.com/5-morning-habits-to-boost-productivity-4f1b4b708a9c">
+                    <img src="{% static '/css/images/nat.jpg' %}" id="still"></a>
+        </div>
+        <!-- <nav class="navbar navbar-expand-sm bg-dark navbar-light">
+            <a href="https://www.linkedin.com/in/vick-shindano-845143142/"> <img src="{% static '/css/images/linkedin.png' %}" id="linkedin"></a>
+            <a href="https://github.com/vick119">  <img src="{% static '/css/images/github.png' %}" id="git"> </a>  
+        </nav> -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Favorites</title>
+          {% load static %}
+        <link rel="stylesheet" href="{% static '/css/styles10.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+<body>
+    <h2>My Favorited Workouts:</h2>
+
+    <div class="col-sm-7">
+        <h4>Workouts :</h4>
+        {% for workout in my_favs %}
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-primary"> 
+                <p>
+                    <a href="/success/{{workout.id}}">
+                        {{workout.title}}
+                    </a>
+                </p>
+            </li>
+            <li class="list-group-item"><p><h4>Workout By:</h4>{{workout.posted_by.first_name}} {{workout.posted_by.last_name}}</p></li>
+            <li class="list-group-item"><p><h5>Description:</h5><br>{{workout.description}}</p></li>
+            <li class="list-group-item"><p> <h5>Instructions:</h5><br>{{workout.instruction}}</p></li>
+            <!-- {% if logged_user not in workout.liked_by.all %}
+            <li class="list-group-item list-group-item-danger"><a href="/success/{{workout.id}}/favorite">Add to Favorites</a></li>
+            {% endif %} -->
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

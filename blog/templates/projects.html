@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>blog</title>
+        {% load static %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static '/css/styles10.css' %}">
+    </head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="/">
+         <img src="{% static '/css/images/varfit.png' %}" style="width:50px">
+        </a>
+        <a href="Goals">About Me</a> <a href="blog">Blog</a>  <a href="projects">Projects</a><a href="/">Home</a>
+    </nav>
+    <div id="project-1">
+        <h4>VARFiT Post a workout</h4>
+        <img src="{% static '/css/images/quo.jpeg' %}" id="quo">
+        <p> Quotes is an application that allows a logged user to post a quote. <br> To make the application
+            more complex I added different functionalities <br> so users with an account are able to <br> favorite, edit and delete.
+        </p>
+    </div>
+    <div id="project-2">
+        <h4>VARFiT Shopify</h4>
+        <img src="{% static '/css/images/tv.jpeg' %}" id="tv">
+        <p>This fullstack application allows logged users to add a list of Tv shows <br>
+           So other users users can have recomedations of some tv series to watch!
+        </p>
+    </div>
+    <div id="project-3">
+        <h4>Amazon review page</h4>
+        <img src="{% static '/css/images/class.jpeg' %}" id="course">
+        <p>This is the first fullstack applications that I build where a user <br>
+           is able to add and remove a class from their Schedule.
+        </p>
+    </div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-light">
+        <a href="https://www.linkedin.com/in/vick-shindano-845143142/"> <img src="{% static '/css/images/linkedin.png' %}" id="linkedin"></a>
+        <a href="https://github.com/vick119">  <img src="{% static '/css/images/github.png' %}" id="git"> </a>  
+    </nav>
+</body>
